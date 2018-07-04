@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home Electrecity</title>
+  <title>Sicpa Tracablity</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-
+ <link rel="icon" type="image/vnd.microsoft.icon" sizes="48x48" href="img/index.ico">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="bootstrap/mystyle.css">
@@ -29,23 +27,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" style="padding: 15px 0 15px 15px ;" href="index.php"><img src="img/download.png" style="margin-top: -16px ; margin-left:-16px ; width: 75px;"></a>
+      <a class="navbar-brand" style="padding: 15px 0 15px 15px ;" href="index.php"><img src="img/Sicpa1.png" style="margin-top: -25px ; margin-left:-16px ; width: 73px;"></a>
     </div>
-    <div class="collapse navbar-collapse" style="font-size: 1.21em; font-weight: bold;" id="myNavbar">
+    <div class="collapse navbar-collapse" style="font-size: 1.21em; font-weight: bold; margin-top: 2px;" id="myNavbar">
       <ul class="nav navbar-nav">
         
-<li><a href="index.php?page=cli">Add Client</a></li>
-        <li><a href="index.php?page=bill">Review Bill</a></li>
-        <li><a href="index.php?page=user">New Users</a></li>
-        <li><a href="index.php?page=cons">Add Consemption</a></li>';
-
-
-  
-       
+        <li><a href="index.php?page=planing">Planning</a></li>
+        <li><a href="index.php?page=compare">Compare</a></li>
 
      </ul>
+
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <li><a href="login.php"><span style="padding-right: 6px;"  class="glyphicon glyphicon-log-in"></span>Login</a></li>
       </ul>
     </div>
   </div>

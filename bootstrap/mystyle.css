@@ -1,6 +1,7 @@
 .navbar {
       margin-bottom: 0;
       border-radius: 0;
+      min-height: 63px ;
     }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -126,4 +127,11 @@
   color: #fff;
   background-color: #1CA347;
   border-color: #1CA347;
+}
+
+.navbar-inverse {
+
+  background-color: #262b5a;
+  border-color: #262b5a;
+
 }
