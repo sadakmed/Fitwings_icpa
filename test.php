@@ -1,7 +1,8 @@
 <?php 
 require_once 'view/header.php';
 ?>
-
+<!--
+/*
 
 <div id="modal" style="display: hidden;">
 <div class="bs-example col-sm-6">
@@ -244,4 +245,234 @@ function  dayNum(num){
 
 
 
+</script>*/-->
+
+
+<div class="col-sm-9">
+	<div class="col-sm-offset-3">
+		<table id="show_site" class="table table-bordered">
+			<thead>
+				<th>Region</th>
+				<th>City</th>
+				<th>Site</th>
+				<th></th>
+			</thead>
+<tbody>
+	<tr >
+		<td rowspan="2" >Nord</td>
+		<td>Fes</td>
+		<td id="11">Karama</td>
+		<td><button class="myBtn" onclick="cli();" >shift</button></td>
+	</tr>
+	<tr id="2">
+		
+		<td>Meknes</td>
+		<td id="22">Valencia</td>
+		<td><button class="myBt" onclick="cli();" >shift</button></td>
+	</tr>
+	<tr id="3">
+		<td>South</td>
+		<td>Tantan</td>
+		<td id="33">Bahia</td>
+		<td><button class="myBtn" onclick="cli();" >shift</button></td>
+	</tr>
+</tbody>
+		</table>
+</div>
+
+
+
+<!------------------------------------------------------------------->
+		<div id="myModal" class="modal" style="display: ;"><div class="col-sm-offset-2">
+<div class="col-sm-8">
+    <div class="model-content" style="background-color: #fefefe;margin: auto; padding: 20px;border: 1px solid #888;">
+        <div class="">
+        	    <span class="close">&times;</span>
+        	<fieldset>
+        		<legend style="text-align: center; font-weight: bold;" id='week'>Shift Week:</legend>
+        	
+        	 <div class="col-sm-4">
+                <div class="input-group"> 
+           <label>Tech:</label>
+                   <select id="tech" class="form-control">
+                   	 <option>-----</option>
+                   	 <option>Said </option>
+                   	 <option>Hamid</option>
+                   	 <option>Nacir</option>
+                   	 <option>Rafik</option>
+                   </select>
+                </div>
+             </div>
+            
+             
+
+                <div class="col-sm-6">
+            <div class="row"><div class="col-sm-4">
+                <div class="input-group"> 
+           <label>Mon:<span id="dmon"></span></label>
+                   <select id="mon" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+                </div></div>
+                <div class="col-sm-4">
+                <div class="input-group"> 
+           <label>Tue:<span id="dtue"></span></label>
+                   <select id="tue" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+                </div></div>
+            </div> 
+
+
+          <div class="row"><div class="col-sm-4">
+                <div class="input-group"> 
+                  <label>Wed:<span id="dwed"></span></label>
+                    <select id="wed" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+                
+            </div>
+            </div>
+            <div class="col-sm-4">
+            
+                <div class="input-group">
+   
+                	<label>Thu:<span id="dthu"></span></label>
+                  <select id="thu" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+            </div>
+            </div>
+
+           
+        </div>
+          <div class="row"><div class="col-sm-4">
+                <div class="input-group"> 
+                  <label>Fri:<span id="dfri"></span></label>
+                    <select id="" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+                
+            </div>
+            </div>
+            <div class="col-sm-4">
+            
+                <div class="input-group">
+   
+                	<label>sat:<span id="dsat"></span></label>
+                  <select id="" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+            </div>
+            </div>
+
+           
+        </div> <div class="row"><div class="col-sm-4">
+                <div class="input-group"> 
+                  <label>Sun:<span id="dsun"></span></label>
+                    <select id="" class="form-control">
+                   	 <option>AM</option>
+                   	 <option>PM</option>
+                   	 <option>NGHT</option>
+                   	 <option>NRM</option>
+
+                   </select>
+                
+            </div>
+            </div>
+         
+
+           
+        </div>
+        </div>
+
+          <br>
+<div class="col-sm-12">
+            <div class="pull-right"> 
+            <div class="input-group"> 
+               <button id="sub" class="btn btn-default">Submit</button>
+            </div>
+            </div></div>
+  
+          <br>
+          <br>
+</fieldset>
+    
+    </div>
+    <hr>
+  
+</div> 
+</div> 
+
+
+
+	
+	
+
+</div>
+<script>
+// Get the modal
+ 
+ var site;
+
+$(function(){
+
+   $('button.myBtn').on('click',function(){
+  
+  site=$(this).closest('td').prev().attr('id');
+
+   });
+
+
+});
+
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementsByClassName("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+ function cli (){
+    modal.style.display = "block";
+//console.log($(this).parent());
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 </script>

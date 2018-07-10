@@ -11,18 +11,18 @@
 	<tr id="1">
 		<td rowspan="2" >Nord</td>
 		<td>Fes</td>
-		<td>karama</td>
+		<td>Karama</td>
 		<td><button class="myBtn" onclick="" >shift</button></td>
 	</tr>
 	<tr id="2">
 		
 		<td>Meknes</td>
-		<td>valencia</td>
+		<td>Valencia</td>
 		<td><button class="myBtn" onclick="" >shift</button></td>
 	</tr>
 	<tr id="3">
 		<td>South</td>
-		<td>tantan</td>
+		<td>Tantan</td>
 		<td>Bahia</td>
 		<td><button class="myBtn" onclick="" >shift</button></td>
 	</tr>
