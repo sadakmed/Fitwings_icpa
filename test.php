@@ -268,7 +268,7 @@ function  dayNum(num){
 		
 		<td>Meknes</td>
 		<td id="22">Valencia</td>
-		<td><button class="myBt" onclick="cli();" >shift</button></td>
+		<td><button class="myBtn" onclick="cli();" >shift</button></td>
 	</tr>
 	<tr id="3">
 		<td>South</td>
@@ -294,7 +294,7 @@ function  dayNum(num){
         	 <div class="col-sm-4">
                 <div class="input-group"> 
            <label>Tech:</label>
-                   <select id="tech" class="form-control">
+                   <select id="tech" name="" class="form-control">
                    	 <option>-----</option>
                    	 <option>Said </option>
                    	 <option>Hamid</option>
@@ -365,7 +365,7 @@ function  dayNum(num){
           <div class="row"><div class="col-sm-4">
                 <div class="input-group"> 
                   <label>Fri:<span id="dfri"></span></label>
-                    <select id="" class="form-control">
+                    <select id="fri" class="form-control">
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -380,7 +380,7 @@ function  dayNum(num){
                 <div class="input-group">
    
                 	<label>sat:<span id="dsat"></span></label>
-                  <select id="" class="form-control">
+                  <select id="sat" class="form-control">
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -394,7 +394,7 @@ function  dayNum(num){
         </div> <div class="row"><div class="col-sm-4">
                 <div class="input-group"> 
                   <label>Sun:<span id="dsun"></span></label>
-                    <select id="" class="form-control">
+                    <select id="sun" class="form-control">
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -437,7 +437,7 @@ function  dayNum(num){
 <script>
 // Get the modal
  
- var site;
+ 
 
 $(function(){
 
@@ -445,10 +445,27 @@ $(function(){
   
   site=$(this).closest('td').prev().attr('id');
 
+
+   });
+
+   $('button#sub').on('click',function(){
+
+
+var tech=$('#tech').find(':selected').text(); 
+var mon=$('#mon').find(':selected').text(); 
+var tue=$('#tue').find(':selected').text(); 
+var wed=$('#wed').find(':selected').text(); 
+var thu=$('#thu').find(':selected').text(); 
+var fri=$('#fri').find(':selected').text(); 
+var sat=$('#sat').find(':selected').text(); 
+var sun=$('#sun').find(':selected').text(); 
+
+
    });
 
 
 });
+
 
 var modal = document.getElementById('myModal');
 

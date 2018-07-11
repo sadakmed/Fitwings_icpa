@@ -8,23 +8,23 @@
 				<th></th>
 			</thead>
 <tbody>
-	<tr id="1">
+	<tr >
 		<td rowspan="2" >Nord</td>
 		<td>Fes</td>
-		<td>Karama</td>
-		<td><button class="myBtn" onclick="" >shift</button></td>
+		<td id="11">Karama</td>
+		<td><button class="myBtn" onclick="cli();" >shift</button></td>
 	</tr>
 	<tr id="2">
 		
 		<td>Meknes</td>
-		<td>Valencia</td>
-		<td><button class="myBtn" onclick="" >shift</button></td>
+		<td id="22">Valencia</td>
+		<td><button class="myBtn" onclick="cli();" >shift</button></td>
 	</tr>
 	<tr id="3">
 		<td>South</td>
 		<td>Tantan</td>
-		<td>Bahia</td>
-		<td><button class="myBtn" onclick="" >shift</button></td>
+		<td id="33">Bahia</td>
+		<td><button class="myBtn" onclick="cli();" >shift</button></td>
 	</tr>
 </tbody>
 		</table>
@@ -164,7 +164,7 @@
 <div class="col-sm-12">
             <div class="pull-right"> 
             <div class="input-group"> 
-               <button class="btn btn-default">Submit</button>
+               <button id="sub" class="btn btn-default">Submit</button>
             </div>
             </div></div>
   
@@ -184,19 +184,81 @@
 	
 
 </div>
+
 <script>
 // Get the modal
 
+var modal = document.getElementById('myModal');
+
+
 $(function(){
 
-   $('.myBtn').on('click',function(){
-   	this.fadeIn();
+   $('button.myBtn').on('click',function(){
+  
+  site=$(this).closest('td').prev().attr('id');
+console.log(site);
+
+   });
+
+   $('button#sub').on('click',function(){
+
+
+var $tech=$('#tech').find(':selected').text(); 
+
+  if($tech==='-----'){
+  	alert('please select a tech !!!!!');
+  	 
+  }else{
+
+
+var $mon= $('#mon').find(':selected').text(); 
+var $dmon=$('#dmon').text();
+
+var $tue= $('#tue').find(':selected').text(); 
+var $dtue=$('#dtue').text();
+
+var $wed= $('#wed').find(':selected').text(); 
+var $dwed=$('#dwed').text();
+
+var $thu= $('#thu').find(':selected').text(); 
+var $dthu=$('#dthu').text();
+
+var $fri= $('#fri').find(':selected').text(); 
+var $dfri=$('#dfri').text();
+
+var $sat= $('#sat').find(':selected').text(); 
+var $dsat=$('#dsat').text();
+
+var $sun= $('#sun').find(':selected').text(); 
+var $dsun=$('#dsun').text();
+  
+$.ajax({url:'view/storeShift.php',
+	    data:{tech:$tech,
+	    	  mon:$mon,dmon:$dmon,
+	          tue:$tue,dtue:$dtue,
+	          wed:$wed,dwed:$dwed,
+	          fri:$fri,dfri:$dfri,
+	          thu:$thu,dthu:$dthu,
+	          sat:$sat,dsat:$dsat,
+	          sun:$sun,dsun:$dsun },
+	    type:'post'
+	    success:function(result){
+
+
+
+
+	    }
+
+}) ;
+
+
+  }
+
    });
 
 
 });
 
-var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
 var btn = document.getElementsByClassName("myBtn");
@@ -205,8 +267,9 @@ var btn = document.getElementsByClassName("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
- function cli {
+ function cli (){
     modal.style.display = "block";
+//console.log($(this).parent());
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -247,7 +310,7 @@ dayAppendTo('dthu',dayNum(3));
 dayAppendTo('dfri',dayNum(4));
 dayAppendTo('dsat',dayNum(5));
 dayAppendTo('dsun',dayNum(6));
-document.getElementById('doshift').innerHTML=' From '+begin.getDate()+'-0'+(begin.getMonth()+1)+' To '+end.getDate()+'-0'+(end.getMonth()+1);
+document.getElementById('doshift').innerHTML=' From '+begin.getDate()+'-0'+(begin.getMonth()+1)+' To '+end.getDate()+'-0'+(end.getMonth()+1)+' / '+begin.getFullYear();
 
 
 
