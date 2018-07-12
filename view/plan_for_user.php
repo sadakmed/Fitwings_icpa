@@ -7,7 +7,7 @@
 				<th>Site</th>
 				<th></th>
 			</thead>
-<tbody>
+<tbody  >
 	<tr >
 		<td rowspan="2" >Nord</td>
 		<td>Fes</td>
@@ -26,7 +26,28 @@
 		<td id="33">Bahia</td>
 		<td><button class="myBtn" onclick="cli();" >shift</button></td>
 	</tr>
+<?php 
+        require_once 'model/connect.php';
+       try {
+        $pdostmt=$pdo->query('select * from sites');
+        $result=$pdostmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $key => $value) {
+        
+      echo "<tr><td>".$value['region']."</td><td>".$value['ville']."</td><td id='".$value['idsite']."'>".$value['names']."</td>
+           <td><button class='myBtn' onclick='cli();'' >shift</button></td>
+      </tr>";
+        }
+
+       } catch (Exception $e) {
+       	 
+
+       }
+
+
+   ?>
+
 </tbody>
+
 		</table>
 </div>
 
@@ -57,10 +78,11 @@
              
 
                 <div class="col-sm-6">
-            <div class="row"><div class="col-sm-4">
+            <div class="row"><div class="col-sm-6">
                 <div class="input-group"> 
            <label>Mon:<span id="dmon"></span></label>
                    <select id="mon" class="form-control">
+                   	 <option>----</option>
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -68,10 +90,11 @@
 
                    </select>
                 </div></div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                 <div class="input-group"> 
            <label>Tue:<span id="dtue"></span></label>
                    <select id="tue" class="form-control">
+                   	 <option>----</option>
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -82,10 +105,11 @@
             </div> 
 
 
-          <div class="row"><div class="col-sm-4">
+          <div class="row"><div class="col-sm-6">
                 <div class="input-group"> 
                   <label>Wed:<span id="dwed"></span></label>
                     <select id="wed" class="form-control">
+                   	 <option>----</option>
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -95,12 +119,13 @@
                 
             </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
             
                 <div class="input-group">
    
                 	<label>Thu:<span id="dthu"></span></label>
                   <select id="thu" class="form-control">
+                   	  <option>----</option>
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -112,10 +137,11 @@
 
            
         </div>
-          <div class="row"><div class="col-sm-4">
+          <div class="row"><div class="col-sm-6">
                 <div class="input-group"> 
                   <label>Fri:<span id="dfri"></span></label>
-                    <select id="" class="form-control">
+                    <select id="fri" class="form-control">
+                   	 <option>----</option>
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -125,12 +151,13 @@
                 
             </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
             
                 <div class="input-group">
    
                 	<label>sat:<span id="dsat"></span></label>
-                  <select id="" class="form-control">
+                  <select id="sat" class="form-control">
+                   	  <option>----</option>
                    	 <option>AM</option>
                    	 <option>PM</option>
                    	 <option>NGHT</option>
@@ -141,11 +168,13 @@
             </div>
 
            
-        </div> <div class="row"><div class="col-sm-4">
+        </div> <div class="row"><div class="col-sm-6">
                 <div class="input-group"> 
                   <label>Sun:<span id="dsun"></span></label>
-                    <select id="" class="form-control">
+                    <select id="sun" class="form-control">
+                   	  <option>----</option>
                    	 <option>AM</option>
+                        
                    	 <option>PM</option>
                    	 <option>NGHT</option>
                    	 <option>NRM</option>
@@ -189,21 +218,25 @@
 // Get the modal
 
 var modal = document.getElementById('myModal');
-
+var site;
 
 $(function(){
 
    $('button.myBtn').on('click',function(){
   
   site=$(this).closest('td').prev().attr('id');
-console.log(site);
 
+console.log('first:'+site);
    });
 
-   $('button#sub').on('click',function(){
 
+
+   $('button#sub').on('click',function(){
+console.log('3'+site);
+  
 
 var $tech=$('#tech').find(':selected').text(); 
+
 
   if($tech==='-----'){
   	alert('please select a tech !!!!!');
@@ -231,9 +264,10 @@ var $dsat=$('#dsat').text();
 
 var $sun= $('#sun').find(':selected').text(); 
 var $dsun=$('#dsun').text();
-  
+  var $site=site;
+  console.log('here:'+$site);
 $.ajax({url:'view/storeShift.php',
-	    data:{tech:$tech,
+	    data:{site:$site,tech:$tech,
 	    	  mon:$mon,dmon:$dmon,
 	          tue:$tue,dtue:$dtue,
 	          wed:$wed,dwed:$dwed,
@@ -241,23 +275,20 @@ $.ajax({url:'view/storeShift.php',
 	          thu:$thu,dthu:$dthu,
 	          sat:$sat,dsat:$dsat,
 	          sun:$sun,dsun:$dsun },
-	    type:'post'
+	    type:'post',
 	    success:function(result){
 
+ console.log(result);
 
-
-
-	    }
-
+ }
 }) ;
-
-
   }
+
+   modal.style.display = "none";
+}); 
 
    });
 
-
-});
 
 
 // Get the button that opens the modal
@@ -267,7 +298,7 @@ var btn = document.getElementsByClassName("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
- function cli (){
+ function cli(){
     modal.style.display = "block";
 //console.log($(this).parent());
 }
@@ -290,7 +321,7 @@ Date.prototype.getWeek = function() {
    date.setHours(0, 0, 0, 0);
   // Thursday in current week decides the year.
   date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-  // January 4 is always in week 1.
+  // January 6 is always in week 1.
   var week1 = new Date(date.getFullYear(), 0, 4);
   // Adjust to Thursday in week 1 and count number of weeks from date to week1.
   return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
@@ -299,8 +330,8 @@ Date.prototype.getWeek = function() {
 	
  var d = new Date();
  var begin = new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear()));
- var end = new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear())+6*60*60*24*1000);
- //var l=b.split(' ');
+ var end   =   new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear())+6*60*60*24*1000);
+
 
 document.getElementById('week').innerHTML='Shift for week:'+(d.getWeek()+1)+'<span id="doshift"></span>';
 dayAppendTo('dmon',dayNum(0));
@@ -377,7 +408,7 @@ function  dayNum(num){
 
 	var d = new Date();
 	var db= new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear())+num*24*60*60*1000);
-	return db.getDate()+'-0'+(db.getMonth()+1);
+	return db.getDate()+'-0'+(db.getMonth()+1)+'-'+db.getFullYear();
 }
 
 
