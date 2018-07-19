@@ -1,6 +1,6 @@
 <div class="col-sm-9">
 	<div class="col-sm-offset-3">
-		<table id="show_site" class="table table-bordered">
+		<table id="show_site" class="table table-bordered" style="background-color: white;">
 			<thead>
 				<th>Region</th>
 				<th>City</th>
@@ -8,29 +8,12 @@
 				<th></th>
 			</thead>
 <tbody  >
-	<tr >
-		<td rowspan="2" >Nord</td>
-		<td>Fes</td>
-		<td id="11">Karama</td>
-		<td><button class="myBtn" onclick="cli();" >shift</button></td>
-	</tr>
-	<tr id="2">
-		
-		<td>Meknes</td>
-		<td id="22">Valencia</td>
-		<td><button class="myBtn" onclick="cli();" >shift</button></td>
-	</tr>
-	<tr id="3">
-		<td>South</td>
-		<td>Tantan</td>
-		<td id="33">Bahia</td>
-		<td><button class="myBtn" onclick="cli();" >shift</button></td>
-	</tr>
-<?php 
+	<?php 
         require_once 'model/connect.php';
        try {
         $pdostmt=$pdo->query('select * from sites');
         $result=$pdostmt->fetchAll(PDO::FETCH_ASSOC);
+        
         foreach ($result as $key => $value) {
         
       echo "<tr><td>".$value['region']."</td><td>".$value['ville']."</td><td id='".$value['idsite']."'>".$value['names']."</td>
@@ -282,9 +265,9 @@ $.ajax({url:'view/storeShift.php',
 
  }
 }) ;
+   modal.style.display = "none";
   }
 
-   modal.style.display = "none";
 }); 
 
    });

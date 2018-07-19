@@ -48,8 +48,11 @@
  <link rel="icon" type="image/vnd.microsoft.icon" sizes="48x48" href="img/index.ico">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="bootstrap/bootstrap.min.css">-->
+  <link rel="stylesheet" href="bootstrap/soplanning.css">
+  <link rel="stylesheet" href="bootstrap/styles.css">
   <link rel="stylesheet" href="bootstrap/mystyle.css">
+  
   <script src="jquery/jquery.min.js"></script>
  
   <style>
@@ -63,7 +66,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="max-height: 60px;" >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
