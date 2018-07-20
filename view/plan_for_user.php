@@ -7,7 +7,7 @@
 				<th>Site</th>
 				<th></th>
 			</thead>
-<tbody  >
+<tbody >
 	<?php 
         require_once 'model/connect.php';
        try {
@@ -16,7 +16,7 @@
         
         foreach ($result as $key => $value) {
         
-      echo "<tr><td>".$value['region']."</td><td>".$value['ville']."</td><td id='".$value['idsite']."'>".$value['names']."</td>
+      echo "<tr><td>".$value['region']."</td><td>".$value['ville']."</td><td id='".$value['idsite']."'>".$value['name']."</td>
            <td><button class='myBtn' onclick='cli();'' >shift</button></td>
       </tr>";
         }

@@ -87,6 +87,7 @@
               if ($val[1]==$value['NomTech'] && $val[2]==$value['site']) {
                    array_push($tmp1, $value['shift']);
                    array_push($tmp1, $value['date']);
+                   array_push($tmp1, $value['idP']);
                    array_push($tmp2, $tmp1);
               }
            }
@@ -213,6 +214,18 @@ $day='';
  }
 
 
+ function siteCreator($sites,$value){
+
+
+              foreach ($sites as  $site) {
+                if ($site['idsite']==$value[2]) {
+             
+ echo '<tr class=""> <td style="padding: 0 20px 0 20px;"><a href="" >'.$site['region'].'</a></td>
+  <td style="padding: 0 20px 0 20px;"><a href="">'.$site['ville'].'</a></td><td style="padding: 0 20px 0 20px;"><a href="">'.$site['name'].'</a>';
+                }
+                
+              }
+ }
 
    function shiftCreator($value,$time_range){
 
@@ -232,18 +245,18 @@ $day='';
          
                if ($i==1) {
                 if ($dnm[0]!='S') 
-                     echo ' <td  style="min-width:25px;" id="td_test_20180702" class="week">'.$tmp['0'].'</td>'; 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="sh week"><a href="index.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>'; 
                   else
-                     echo ' <td  style="min-width:25px;" id="td_test_20180702" class="weekend">'.$tmp['0'].'</td>';      
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend sh"><a href="index.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>';      
     }
 
                        
                 else
                      {
                       if ($dnm[0]!='S') 
-                     echo ' <td  style="min-width:25px;" id="td_test_20180702" class="week">&nbsp;</td>'; 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="week"><a href=>&nbsp;</a></td>'; 
                   else
-                     echo ' <td  style="min-width:25px;" id="td_test_20180702" class="weekend">&nbsp;</td>'; 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend"><a>&nbsp;</a></td>'; 
                      }
                        
       }
@@ -252,18 +265,6 @@ $day='';
    }
 
 
- function siteCreator($sites,$value){
-
-
-              foreach ($sites as  $site) {
-                if ($site['idsite']==$value[2]) {
-             
- echo '<tr> <td style="padding: 0 20px 0 20px;"><a href="" >'.$site['region'].'</a></td>
-  <td style="padding: 0 20px 0 20px;"><a href="">'.$site['ville'].'</a></td><td style="padding: 0 20px 0 20px;"><a href="">'.$site['name'].'</a>';
-                }
-                
-              }
- }
 
    function   theCreator($tech,$sites,$time_range){
 
@@ -423,6 +424,27 @@ $day='';
     </div>
   </div>
 
+<script type="text/javascript">
+  
+$(function(){
+
+  a=$('tbody tr td div table#tabContenuPlanning tbody tr td.sh');
+  $.each(a,function(key,value){
+    switch ($(value).text() ){
+        case 'AM': $(value).css('background-color','#ffff99').css('text-align','center');break;
+        case 'PM': $(value).css('background-color','#ff8533').css('text-align','center');break;
+        case 'NRM': $(value).css('background-color','#66ff33').css('text-align','center');break;
+        case 'NGHT': $(value).css('background-color','#6699ff').css('text-align','center');break;
+        
+    }
+
+  });
+
+
+});
+
+
+</script>
 
 
 
