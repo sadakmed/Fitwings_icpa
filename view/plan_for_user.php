@@ -13,13 +13,15 @@
        try {
         $pdostmt=$pdo->query('select * from sites');
         $result=$pdostmt->fetchAll(PDO::FETCH_ASSOC);
-        
+       
         foreach ($result as $key => $value) {
         
       echo "<tr><td>".$value['region']."</td><td>".$value['ville']."</td><td id='".$value['idsite']."'>".$value['name']."</td>
            <td><button class='myBtn' onclick='cli();'' >shift</button></td>
       </tr>";
         }
+
+
 
        } catch (Exception $e) {
        	 
@@ -43,6 +45,8 @@
         <div class="">
         	    <span class="close">&times;</span>
         	<fieldset>
+
+        		
         		<legend style="text-align: center; font-weight: bold;" id='week'>Shift Week:</legend>
         	
         	 <div class="col-sm-4">
@@ -208,15 +212,13 @@ $(function(){
    $('button.myBtn').on('click',function(){
   
   site=$(this).closest('td').prev().attr('id');
-
-console.log('first:'+site);
+ console.log(site);
    });
 
 
 
    $('button#sub').on('click',function(){
-console.log('3'+site);
-  
+  site=site;
 
 var $tech=$('#tech').find(':selected').text(); 
 
@@ -248,7 +250,7 @@ var $dsat=$('#dsat').text();
 var $sun= $('#sun').find(':selected').text(); 
 var $dsun=$('#dsun').text();
   var $site=site;
-  console.log('here:'+$site);
+  console.log($site);
 $.ajax({url:'view/storeShift.php',
 	    data:{site:$site,tech:$tech,
 	    	  mon:$mon,dmon:$dmon,
@@ -259,9 +261,12 @@ $.ajax({url:'view/storeShift.php',
 	          sat:$sat,dsat:$dsat,
 	          sun:$sun,dsun:$dsun },
 	    type:'post',
-	    success:function(result){
-
+	    success:function(result){ 
  console.log(result);
+ }, 
+error:function(result){
+
+ console.log('noo');
 
  }
 }) ;

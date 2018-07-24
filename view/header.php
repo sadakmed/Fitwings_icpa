@@ -79,7 +79,7 @@
     <div class="collapse navbar-collapse" style="font-size: 1.21em; font-weight: bold; margin-top: 2px;" id="myNavbar">
       <ul class="nav navbar-nav">
         
-        <li><a href="index.php?page=plan">Planning</a></li>
+        <li><a href="test.php">Planning</a></li>
         <li><a href="index.php?page=plan_for_user">Plan The Shift</a></li>
         <li><a href="index.php?page=compare">Compare</a></li>
 

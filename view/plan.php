@@ -31,13 +31,9 @@
 									<div id="divScrollHautInterne"></div>
 								</div>
 														<div id="divConteneurPlanning" class="scroll" style="overflow-y:hidden" onscroll="document.cookie='xposMois=' + document.getElementById('divConteneurPlanning').scrollLeft;">
+															
 								<table class="planningContent" id="tabContenuPlanning">
-<tr>
-<th id="tdUser_0" rowspan="4" colspan="4"></th>
 
-<th class="planning_head_month" colspan="28"><a href="">July 2018</a></th>
-
-</tr>
 <tr>
 
 <th class="planning_head_week" colspan="7"><a href="">W 27</a></th>
@@ -46,6 +42,7 @@
 <th class="planning_head_week" colspan="7"><a href="">W 30</a></th>
 
 </tr>
+
 <tr>
 
 <th class="planning_head_dayname week"><div><a href="">M</a></div></th>
@@ -78,6 +75,7 @@
 <th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
 
 </tr>
+
 <tr>
 
 <th class="planning_head_day week"><a href="">2</a></th>
