@@ -27,10 +27,10 @@
 
  }
 
- function weektotime($week){
+ function weektotime($week,$year){
 
- 	$y=date('Y');
- 	$time=mktime(0,0,0,1,1,$y);
+ 	
+ 	$time=mktime(0,0,0,1,1,$year);
  	return $time+(($week-1)*7*24*60*60);
  }
 
@@ -72,7 +72,7 @@
  function weekto_($from,$to){
 
          $range=h_many_W($from,$to);   
-       return array_map(function($in){ $t=date('M',weektotime($in)); return $in.'/'.$t ;}, $range);
+       return array_map(function($in){ $t=date('M',weektotime($in,date('Y'))); return $in.'/'.$t ;},$range);
 
  }
 
@@ -240,8 +240,8 @@ $day='';
               $dnm=date('l',$val);
          
                if ($i==1) {
-                if ($dnm[0]!='S') 
-                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="sh week"><a href="index.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>'; 
+                if ((time() - $tmp[1] )> 36*60*60) 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="sh week">'.$tmp['0'].'</td>'; 
                   else
                      echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend sh"><a href="index.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>';      
     }
@@ -250,9 +250,9 @@ $day='';
                 else
                      {
                       if ($dnm[0]!='S') 
-                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="week"><a href=>&nbsp;</a></td>'; 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="week">&nbsp;</td>'; 
                   else
-                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend"><a>&nbsp;</a></td>'; 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend">&nbsp;</td>'; 
                      }
                        
       }
@@ -310,3 +310,37 @@ try {
 	 echo $e;
 }
     }
+
+
+
+
+
+    
+ function hours_shift($shift,$hour){
+  switch ($shift) {
+     
+        case 'PM1':  return  $hour*PM1  ;   break;
+        case 'PM2':  return  $hour*PM2;   break;
+        case 'PM3':  return  $hour*PM3  ;   break;
+        case 'PM4':  return  $hour*PM4  ;   break;
+
+        case 'NGHT1':  return  $hour*NGHT1  ;   break;
+        case 'NGHT2':  return  $hour*NGHT2  ;   break;
+        case 'NGHT3':  return  $hour*NGHT3  ;   break;
+         
+        default: return  $hour*0  ;
+          
+          break;
+      }
+ }
+
+function totalHours(array $shifts){
+    $result=0;
+    foreach ($shifts as $key => $shift) {
+             
+           $result+=$shift[2];
+
+    }
+      return $result;
+
+}

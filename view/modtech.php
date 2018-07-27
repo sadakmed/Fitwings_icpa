@@ -2,12 +2,19 @@
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-if (isset($_POST['idp'])) {
+
+if (  isset($_POST['idp'])) {
 	
+	if (( time() - $_POST['date'] ) > 36*60*60) {
+		echo  '0' ;
+	}else{
+
+
 	
+
     
     require '../model/connect.php';
-$result=array();
+    $result=array();
     $pdostmt=$pdo->prepare("update wplan set NomTech=:n , site=:s, shift=:sh where idp=:i");
     $pdostmt->bindValue( ':n',$_POST['tech']);
     $pdostmt->bindValue( ':s',$_POST['site']);
@@ -27,4 +34,5 @@ $result=array();
 
 
    echo json_encode($result);
+}  
 }  

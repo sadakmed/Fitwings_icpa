@@ -11,6 +11,7 @@
 	<?php 
         require_once 'model/connect.php';
        try {
+
         $pdostmt=$pdo->query('select * from sites');
         $result=$pdostmt->fetchAll(PDO::FETCH_ASSOC);
        
@@ -39,8 +40,8 @@
 
 
 <!------------------------------------------------------------------->
-		<div id="myModal" class="modal" style="display: ;"><div class="col-sm-offset-2">
-<div class="col-sm-8">
+		<div id="myModal" class="modal" style="display: ;"><div class="">
+<div class="col-sm-12">
     <div class="model-content" style="background-color: #fefefe;margin: auto; padding: 20px;border: 1px solid #888;">
         <div class="">
         	    <span class="close">&times;</span>
@@ -49,7 +50,7 @@
         		
         		<legend style="text-align: center; font-weight: bold;" id='week'>Shift Week:</legend>
         	
-        	 <div class="col-sm-4">
+        	 <div class="col-sm-2">
                 <div class="input-group"> 
            <label>Tech:</label>
                    <select id="tech" class="form-control">
@@ -64,117 +65,27 @@
             
              
 
-                <div class="col-sm-6">
-            <div class="row"><div class="col-sm-6">
-                <div class="input-group"> 
-           <label>Mon:<span id="dmon"></span></label>
-                   <select id="mon" class="form-control">
-                   	 <option>----</option>
-                   	 <option>AM</option>
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
-
-                   </select>
-                </div></div>
-                <div class="col-sm-6">
-                <div class="input-group"> 
-           <label>Tue:<span id="dtue"></span></label>
-                   <select id="tue" class="form-control">
-                   	 <option>----</option>
-                   	 <option>AM</option>
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
-
-                   </select>
-                </div></div>
-            </div> 
+                <?php   require 'include/week1.php'; ?>
+                <?php   require 'include/week2.php'; ?>
+                <?php   require 'include/week3.php'; ?>
 
 
-          <div class="row"><div class="col-sm-6">
-                <div class="input-group"> 
-                  <label>Wed:<span id="dwed"></span></label>
-                    <select id="wed" class="form-control">
-                   	 <option>----</option>
-                   	 <option>AM</option>
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
 
-                   </select>
-                
-            </div>
-            </div>
-            <div class="col-sm-6">
-            
-                <div class="input-group">
-   
-                	<label>Thu:<span id="dthu"></span></label>
-                  <select id="thu" class="form-control">
-                   	  <option>----</option>
-                   	 <option>AM</option>
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
+<br>
+<br>
+<br>
+ 
+<div   style="margin-top: 20px;" >
+<div   class="col-sm-offset-5" >
+	<br>
 
-                   </select>
-            </div>
-            </div>
+<br>
+                <?php   require 'include/week4.php'; ?>
 
-           
-        </div>
-          <div class="row"><div class="col-sm-6">
-                <div class="input-group"> 
-                  <label>Fri:<span id="dfri"></span></label>
-                    <select id="fri" class="form-control">
-                   	 <option>----</option>
-                   	 <option>AM</option>
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
+ </div>
+ </div>
 
-                   </select>
-                
-            </div>
-            </div>
-            <div class="col-sm-6">
-            
-                <div class="input-group">
-   
-                	<label>sat:<span id="dsat"></span></label>
-                  <select id="sat" class="form-control">
-                   	  <option>----</option>
-                   	 <option>AM</option>
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
 
-                   </select>
-            </div>
-            </div>
-
-           
-        </div> <div class="row"><div class="col-sm-6">
-                <div class="input-group"> 
-                  <label>Sun:<span id="dsun"></span></label>
-                    <select id="sun" class="form-control">
-                   	  <option>----</option>
-                   	 <option>AM</option>
-                        
-                   	 <option>PM</option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
-
-                   </select>
-                
-            </div>
-            </div>
-         
-
-           
-        </div>
-        </div>
 
           <br>
 <div class="col-sm-12">
@@ -229,37 +140,132 @@ var $tech=$('#tech').find(':selected').text();
   }else{
 
 
-var $mon= $('#mon').find(':selected').text(); 
-var $dmon=$('#dmon').text();
+//week 1
+var $mon1 = $('#mon1').find(':selected').text(); 
+var $dmon1= $('#dmon1').text();
 
-var $tue= $('#tue').find(':selected').text(); 
-var $dtue=$('#dtue').text();
+var $tue1 = $('#tue1').find(':selected').text(); 
+var $dtue1= $('#dtue1').text();
 
-var $wed= $('#wed').find(':selected').text(); 
-var $dwed=$('#dwed').text();
+var $wed1 = $('#wed1').find(':selected').text(); 
+var $dwed1= $('#dwed1').text();
 
-var $thu= $('#thu').find(':selected').text(); 
-var $dthu=$('#dthu').text();
+var $thu1 = $('#thu1').find(':selected').text(); 
+var $dthu1= $('#dthu1').text();
 
-var $fri= $('#fri').find(':selected').text(); 
-var $dfri=$('#dfri').text();
+var $fri1 = $('#fri1').find(':selected').text(); 
+var $dfri1= $('#dfri1').text();
 
-var $sat= $('#sat').find(':selected').text(); 
-var $dsat=$('#dsat').text();
+var $sat1 = $('#sat1').find(':selected').text(); 
+var $dsat1= $('#dsat1').text();
 
-var $sun= $('#sun').find(':selected').text(); 
-var $dsun=$('#dsun').text();
+var $sun1 = $('#sun1').find(':selected').text(); 
+var $dsun1= $('#dsun1').text();
+
+//week2
+
+var $mon2= $('#mon2').find(':selected').text(); 
+var $dmon2=$('#dmon2').text();
+
+var $tue2= $('#tue2').find(':selected').text(); 
+var $dtue2=$('#dtue2').text();
+
+var $wed2= $('#wed2').find(':selected').text(); 
+var $dwed2=$('#dwed2').text();
+
+var $thu2= $('#thu2').find(':selected').text(); 
+var $dthu2=$('#dthu2').text();
+
+var $fri2= $('#fri2').find(':selected').text(); 
+var $dfri2=$('#dfri2').text();
+
+var $sat2= $('#sat2').find(':selected').text(); 
+var $dsat2=$('#dsat2').text();
+
+var $sun2= $('#sun2').find(':selected').text(); 
+var $dsun2=$('#dsun2').text();
+
+
+//week3
+
+var $mon3= $('#mon3').find(':selected').text(); 
+var $dmon3=$('#dmon3').text();
+
+var $tue3= $('#tue3').find(':selected').text(); 
+var $dtue3=$('#dtue3').text();
+
+var $wed3= $('#wed3').find(':selected').text(); 
+var $dwed3=$('#dwed3').text();
+
+var $thu3= $('#thu3').find(':selected').text(); 
+var $dthu3=$('#dthu3').text();
+
+var $fri3= $('#fri3').find(':selected').text(); 
+var $dfri3=$('#dfri3').text();
+
+var $sat3= $('#sat3').find(':selected').text(); 
+var $dsat3=$('#dsat3').text();
+
+var $sun3= $('#sun3').find(':selected').text(); 
+var $dsun3=$('#dsun3').text();
+
+//week4
+
+var $mon4= $('#mon4').find(':selected').text(); 
+var $dmon4=$('#dmon4').text();
+
+var $tue4= $('#tue4').find(':selected').text(); 
+var $dtue4=$('#dtue4').text();
+
+var $wed4= $('#wed4').find(':selected').text(); 
+var $dwed4=$('#dwed4').text();
+
+var $thu4= $('#thu4').find(':selected').text(); 
+var $dthu4=$('#dthu4').text();
+
+var $fri4= $('#fri4').find(':selected').text(); 
+var $dfri4=$('#dfri4').text();
+
+var $sat4= $('#sat4').find(':selected').text(); 
+var $dsat4=$('#dsat4').text();
+
+var $sun4= $('#sun4').find(':selected').text(); 
+var $dsun4=$('#dsun4').text();
   var $site=site;
   console.log($site);
 $.ajax({url:'view/storeShift.php',
 	    data:{site:$site,tech:$tech,
-	    	  mon:$mon,dmon:$dmon,
-	          tue:$tue,dtue:$dtue,
-	          wed:$wed,dwed:$dwed,
-	          fri:$fri,dfri:$dfri,
-	          thu:$thu,dthu:$dthu,
-	          sat:$sat,dsat:$dsat,
-	          sun:$sun,dsun:$dsun },
+	    	  mon1:$mon1,dmon1:$dmon1,
+	          tue1:$tue1,dtue1:$dtue1,
+	          wed1:$wed1,dwed1:$dwed1,
+	          fri1:$fri1,dfri1:$dfri1,
+	          thu1:$thu1,dthu1:$dthu1,
+	          sat1:$sat1,dsat1:$dsat1,
+	          sun1:$sun1,dsun1:$dsun1,
+
+	          mon2:$mon2,dmon2:$dmon2,
+	          tue2:$tue2,dtue2:$dtue2,
+	          wed2:$wed2,dwed2:$dwed2,
+	          fri2:$fri2,dfri2:$dfri2,
+	          thu2:$thu2,dthu2:$dthu2,
+	          sat2:$sat2,dsat2:$dsat2,
+	          sun2:$sun2,dsun2:$dsun2,
+
+	          mon3:$mon3,dmon3:$dmon3,
+	          tue3:$tue3,dtue3:$dtue3,
+	          wed3:$wed3,dwed3:$dwed3,
+	          fri3:$fri3,dfri3:$dfri3,
+	          thu3:$thu3,dthu3:$dthu3,
+	          sat3:$sat3,dsat3:$dsat3,
+	          sun3:$sun3,dsun3:$dsun3,
+
+	          mon4:$mon4,dmon4:$dmon4,
+	          tue4:$tue4,dtue4:$dtue4,
+	          wed4:$wed4,dwed4:$dwed4,
+	          fri4:$fri4,dfri4:$dfri4,
+	          thu4:$thu4,dthu4:$dthu4,
+	          sat4:$sat4,dsat4:$dsat4,
+	          sun4:$sun4,dsun4:$dsun4 },
 	    type:'post',
 	    success:function(result){ 
  console.log(result);
@@ -317,19 +323,57 @@ Date.prototype.getWeek = function() {
 }
 	
  var d = new Date();
+
+ var d2 = new Date();
+ var d3 = new Date();
+ var d4 = new Date();
  var begin = new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear()));
  var end   =   new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear())+6*60*60*24*1000);
 
 
-document.getElementById('week').innerHTML='Shift for week:'+(d.getWeek()+1)+'<span id="doshift"></span>';
-dayAppendTo('dmon',dayNum(0));
-dayAppendTo('dtue',dayNum(1));
-dayAppendTo('dwed',dayNum(2));
-dayAppendTo('dthu',dayNum(3));
-dayAppendTo('dfri',dayNum(4));
-dayAppendTo('dsat',dayNum(5));
-dayAppendTo('dsun',dayNum(6));
-document.getElementById('doshift').innerHTML=' From '+begin.getDate()+'-0'+(begin.getMonth()+1)+' To '+end.getDate()+'-0'+(end.getMonth()+1)+' / '+begin.getFullYear();
+document.getElementById('week').innerHTML='Shift for weeks:'+(weektime(0)+' .. '+weektime(21))+'<span id="doshift"></span>';
+
+document.getElementById('week1').innerHTML='Week:'+(weektime(0))+'<span id="doshift1"></span>';
+
+document.getElementById('week2').innerHTML='Week:'+(weektime(7))+'<span id="doshift2"></span>';
+
+document.getElementById('week3').innerHTML='Week:'+(weektime(14))+'<span id="doshift3"></span>';
+
+document.getElementById('week4').innerHTML='Week:'+(weektime(21))+'<span id="doshift4"></span>';
+
+dayAppendTo('dmon1',dayNum(0));
+dayAppendTo('dtue1',dayNum(1));
+dayAppendTo('dwed1',dayNum(2));
+dayAppendTo('dthu1',dayNum(3));
+dayAppendTo('dfri1',dayNum(4));
+dayAppendTo('dsat1',dayNum(5));
+dayAppendTo('dsun1',dayNum(6));
+
+dayAppendTo('dmon2',dayNum(7));
+dayAppendTo('dtue2',dayNum(8));
+dayAppendTo('dwed2',dayNum(9));
+dayAppendTo('dthu2',dayNum(10));
+dayAppendTo('dfri2',dayNum(11));
+dayAppendTo('dsat2',dayNum(12));
+dayAppendTo('dsun2',dayNum(13));
+
+dayAppendTo('dmon3',dayNum(14));
+dayAppendTo('dtue3',dayNum(15));
+dayAppendTo('dwed3',dayNum(16));
+dayAppendTo('dthu3',dayNum(17));
+dayAppendTo('dfri3',dayNum(18));
+dayAppendTo('dsat3',dayNum(19));
+dayAppendTo('dsun3',dayNum(20));
+
+dayAppendTo('dmon4',dayNum(21));
+dayAppendTo('dtue4',dayNum(22));
+dayAppendTo('dwed4',dayNum(23));
+dayAppendTo('dthu4',dayNum(24));
+dayAppendTo('dfri4',dayNum(25));
+dayAppendTo('dsat4',dayNum(26));
+dayAppendTo('dsun4',dayNum(27));
+
+document.getElementById('doshift').innerHTML=' From '+dayNum(0)+' To '+dayNum(21);
 
 
 
@@ -397,6 +441,13 @@ function  dayNum(num){
 	var d = new Date();
 	var db= new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear())+num*24*60*60*1000);
 	return db.getDate()+'-0'+(db.getMonth()+1)+'-'+db.getFullYear();
+}
+
+function weektime(num){
+
+	var d = new Date();
+	var db= new Date(firstDayOfWeek(d.getWeek()+1,d.getFullYear())+num*24*60*60*1000);
+	return db.getWeek();
 }
 
 

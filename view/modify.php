@@ -6,7 +6,15 @@ ini_set("display_errors", 1);
   require_once 'view/function.php';
 
     $pdostmt=$pdo->query('select * from wplan where idp='.$_GET['idp']);
-    $result=$pdostmt->fetch(PDO::FETCH_ASSOC);
+    $result=$pdostmt->fetch(PDO::FETCH_ASSOC);  
+
+
+
+    if ( (time() - $result['date'] )> 36*60*60 ) {
+    	
+
+    	header("location:test.php");
+    }
 
    
 
@@ -21,13 +29,7 @@ ini_set("display_errors", 1);
 
        
  <div id="myModal" class="modal" style="display:block; ">
- 	<div id='succes' class="col-sm-5"  style="display: none;">
- 	<div class="col-sm-offset-2">
-<div  class="alert alert-success" style="margin-left: 13px ; ">
-  <strong>Failed!</strong> Modification not effected!!!
-</div>
- </div>
- </div>
+ 	
  	<div class="col-sm-11">
 <div class="col-sm-offset-1">
     <div class="model-content" style="background-color: #fefefe;margin: auto; padding: 20px;border: 1px solid #888;">
@@ -91,10 +93,10 @@ ini_set("display_errors", 1);
            <label>Tech:</label>
            <select id="tech" class="form-control">
                    	 <option>-----</option>
-                   	 <option >Said </option>
-                   	 <option >Hamid</option>
-                   	 <option>Nacir</option>
-                   	 <option>Rafik</option>
+                   	 <option  value="Said " >Said </option>
+                   	 <option  value="Hamid" >Hamid</option>
+                   	 <option value="Nacir" >Nacir</option>
+                   	 <option value="Rafik" >Rafik</option>
                    </select>                </div>
             </div><div class="col-sm-3">
         		<div class="form-group"> 
@@ -167,7 +169,10 @@ ini_set("display_errors", 1);
  
  <script type="text/javascript">
  	 $(function(){
-    
+     
+
+    $('select#tech').val('<?= $result['NomTech']?>');
+    $('select#site').val('<?= $result['site']?>');
 
 
       $('button#sub').on('click',function(){
@@ -187,12 +192,12 @@ ini_set("display_errors", 1);
          	      type:'POST',
          	      data:{idp:$idp,tech:$tech,site:$site,shift:$shift,reason:$reason,date:$date},
          	      success:function(result){
+         	      	console.log(result);
                    a=JSON.parse(result);
-console.log(a);
    if (a[0]===true && a[1]===true ) {
 
                  
-              setTimeout(red(),2000);
+              setTimeout(red(),1000);
               
   
 

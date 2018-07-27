@@ -9,10 +9,12 @@ ini_set("display_errors", 1);
  require 'model/connect.php';
  require 'view/function.php';
  
-
+ 
  $sql="SELECT * FROM `wplan` where date between" ;
  
- if (@strlen($_POST['from'])>6 and @strlen($_POST['from'])>6 ){
+
+
+ if (@strlen($_POST['from'])>6 && @strlen($_POST['from'])>6 ){
      
      list($y1,$w1)=explode('-W', $_POST['from']);
      list($y2,$w2)=explode('-W', $_POST['to']);
@@ -20,8 +22,8 @@ ini_set("display_errors", 1);
     
    
 
-  $from=weektotime($w1)-60*60 ;
-  $to=weektotime($w2)+6*24*60*60 ;
+  $from=weektotime($w1,$y1)-60*60 ;
+  $to=weektotime($w2,$y2)+6*24*60*60 ;
    # code...
   $sql .= " $from and $to";
 
@@ -29,40 +31,43 @@ ini_set("display_errors", 1);
      
   $sql.=" and NomTech=".$_POST['tech'];
 
-     if ( $_POST['site']!='All' ) {
+     
+ }
+
+ if ( $_POST['site']!='All' ) {
             
               $sql.=" and site=".$_POST['site'];       
           
          }
- }
 
    }else{
 
 
 
-  $from=weektotime(date('W',time())-1)-60*60 ;
-  $to=weektotime(date('W',time())+1)+6*24*60*60 ;
+  $from=weektotime(date('W',time()-(7*24*60*60)),date('Y',time()-(7*24*60*60)))-60*60 ;
+  $to=weektotime(date('W',(time()+(20*24*60*60))),date('Y',(time()+(20*24*60*60))))-60*60-1 ;
+
 
 
     
- $sql .= " $from and $to  ";
+ $sql .= " $from and $to ";
 
- if ( @$_POST['tech']!='All')  {
+ if ( isset($_POST['tech']) and @$_POST['tech']!='All')  {
      
   @$sql.=" and NomTech=".$_POST['tech'];
 
-     if ( @$_POST['site']!='All' ) {
+     
+ }
+ if ( isset($_POST['tech']) and  @$_POST['site']!='All' ) {
             
               @$sql.=" and site=".$_POST['site'];       
           
          }
- }
         
     
    }
  
-echo $sql;
-
+echo "string";
 
   $time_range=range($from,$to,86400);
  
@@ -73,6 +78,8 @@ echo $sql;
           $pdostmt=$pdo->query($sql);
          
           $result=$pdostmt->fetchAll(PDO::FETCH_ASSOC);
+          $rows=$pdostmt->rowCount();
+
        //  var_dump($result);
           $sites=getSites($pdo);
           // $destech=array_unique($tech);
@@ -83,7 +90,7 @@ echo $sql;
        
         $techi = array_map("unserialize", array_unique(array_map("serialize", $tec)));
         
-        var_dump($techi);
+       // var_dump($techi);
             }
           catch(Exception $e){
             echo $e ;
@@ -179,88 +186,66 @@ $tech=orga($techi,$result);
                 </table>
               </div>
             </td>
-            <td>
+          
+         <?php
+
+
+
+  if ( $rows >0 ) {
+    # code...
+  
+
+
+          echo '   <td>
                               <div id="divScrollHaut" class="scroll">
                   <div id="divScrollHautInterne"></div>
                 </div>
-                       <div id="divConteneurPlanning" class="scroll" style="overflow-y:hidden" onscroll="document.cookie= document.getElementById('divConteneurPlanning').scrollLeft;">
-                <table class="planningContent" id="tabContenuPlanning">
-
-
-<tr>
-  
-<?php 
-
+                       <div id="divConteneurPlanning" class="scroll" style="overflow-y:hidden">
+                <table class="planningContent" id="tabContenuPlanning"><tr> '; 
 
   
 
      weekCreator($from,$to);
 
-?>
 
-</tr>
+echo '</tr><tr>';
+//<!-- day's name -- 
 
-<tr>
-<!-- day's name --> 
-
-<?php  
     
     
    dasnameCreator($time_range);
   
-?> 
-
-
-</tr>
-
-<tr>
-  <!-- days -->
-
-  <?php  
-
+echo '</tr><tr>';
  
   dayCreator($time_range);
-?> 
-
-
-
-
-</tr>
-
-<tr>
-
-
- 
-
-    <?php
-
+echo '</tr><tr>';
  
    theCreator($tech,$sites,$time_range);
 
   
 
+
+
+  
+
+echo '</tr></table>';}else{
+
+
+echo '
+<div  class="col-sm-6"  style="margin-top:50px;">
+  <div class="col-sm-offset-2">
+<div  class="alert alert-warning" style="margin-left: 13px ; ">
+  <strong>No data!</strong> Try another filter !!!
+</div>
+ </div>
+ </div> ';
+
+}
+
+
     ?>
 
 
-  
-
-</tr>
-
-<!--
-<tr class="test">
-  
-  <th>Meknes</th>
-  <th>Valancia</th>
-  <th id="tdUser_1" >&nbsp;<a  href="javascript:xajax_modifProjet('test');undefined;">Said Ayadi</a>&nbsp;</th>
-
-  <td  style="min-width:25px;" id="td_test_20180703" class="week">&nbsp;</td>
-  <td  style="min-width:25px;" id="td_test_20180702" class="week">&nbsp;</td>
-  <td  style="min-width:25px;" id="td_test_20180704" class="week">&nbsp;</td>
-  <td  style="min-width:25px;" id="td_test_20180705" class="week today">&nbsp;</td>
-
-</tr>   -->
-
-</table>
 
               </div>
             </td>
@@ -275,19 +260,25 @@ $tech=orga($techi,$result);
 $(function(){
 
 
-  var la=$('#from')
-  la.on('change',function(){
-           var my = $(la).val()
- console.log(my);
-  });
+
 
   a=$('tbody tr td div table#tabContenuPlanning tbody tr td.sh');
   $.each(a,function(key,value){
     switch ($(value).text() ){
-        case 'AM': $(value).css('background-color','#ffff99').css('text-align','center');break;
-        case 'PM': $(value).css('background-color','#ff8533').css('text-align','center');break;
+        case 'AM1': $(value).css('background-color','#ffff99').css('text-align','center');break;
+        case 'PM1': $(value).css('background-color','rgb(232, 168, 124)').css('text-align','center');break;
+
+        case 'AM2': $(value).css('background-color','#ffff4d').css('text-align','center');break;
+        case 'PM2': $(value).css('background-color','rgb(234, 187, 79)').css('text-align','center');break;
+        case 'AM3': $(value).css('background-color','#ffff00').css('text-align','center');break;
+        case 'PM3': $(value).css('background-color','rgb(195, 106, 63)').css('text-align','center');break;
+        case 'AM4': $(value).css('background-color','#ffc61a').css('text-align','center');break;
+        case 'PM4': $(value).css('background-color','#ff8533').css('text-align','center');break;
+        
         case 'NRM': $(value).css('background-color','#66ff33').css('text-align','center');break;
-        case 'NGHT': $(value).css('background-color','#6699ff').css('text-align','center');break;
+        case 'NGHT1': $(value).css('background-color','rgb(224, 199, 224)').css('text-align','center');break;
+        case 'NGHT2': $(value).css('background-color','#d698d5').css('text-align','center');break;
+        case 'NGHT3': $(value).css('background-color','rgb(154, 107, 216)').css('text-align','center');break;
         
     }
 

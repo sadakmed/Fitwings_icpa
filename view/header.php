@@ -81,7 +81,7 @@
         
         <li><a href="test.php">Planning</a></li>
         <li><a href="index.php?page=plan_for_user">Plan The Shift</a></li>
-        <li><a href="index.php?page=compare">Compare</a></li>
+        <li><a href="index.php?page=count">Count shifts</a></li>
 
      </ul>
 
