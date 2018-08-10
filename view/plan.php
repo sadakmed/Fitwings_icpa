@@ -1,187 +1,295 @@
-<div class="row">
-		<div class="col-md-12">
-			<div class="soplanning-box" id="divPlanning">
-				<table id="tablePlanning">
-					<tr>
-						<td class="switchCell">
-							<div id="divBoutonInverser" class="text-center">
-							</div>
-						</td>
-						<td>
-							<div id="divLigneEntete" style="display:none">
-								<table id="layerJours" class="planningContent scroll">
-									<tbody id="bodyLayerJours">
-									</tbody>
-								</table>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="text-right">
-							<div id="divColonneEntente" >
-								<div class="h17"></div>
-								<table id="divPeople">
-									<tbody id="bodyPeople">
-									</tbody>
-								</table>
-							</div>
-						</td>
-						<td>
-															<div id="divScrollHaut" class="scroll">
-									<div id="divScrollHautInterne"></div>
-								</div>
-														<div id="divConteneurPlanning" class="scroll" style="overflow-y:hidden" onscroll="document.cookie='xposMois=' + document.getElementById('divConteneurPlanning').scrollLeft;">
-															
-								<table class="planningContent" id="tabContenuPlanning">
+<?php 
 
-<tr>
 
-<th class="planning_head_week" colspan="7"><a href="">W 27</a></th>
-<th class="planning_head_week" colspan="7"><a href="">W 28</a></th>
-<th class="planning_head_week" colspan="7"><a href="">W 29</a></th>
-<th class="planning_head_week" colspan="7"><a href="">W 30</a></th>
 
-</tr>
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
-<tr>
 
-<th class="planning_head_dayname week"><div><a href="">M</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">W</a></div></th>
-<th class="planning_head_dayname week today"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">F</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">M</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">W</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">F</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">M</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">W</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">F</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">M</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">W</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">T</a></div></th>
-<th class="planning_head_dayname week"><div><a href="">F</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
-<th class="planning_head_dayname weekend"><div><a href="">S</a></div></th>
+ require 'model/connect.php';
+ require 'view/function.php';
+ 
+ 
+ $sql="SELECT * FROM `wplan` where date between" ;
+ 
 
-</tr>
 
-<tr>
+ if (@strlen($_POST['from'])>6 && @strlen($_POST['from'])>6 ){
+     
+     list($y1,$w1)=explode('-W', $_POST['from']);
+     list($y2,$w2)=explode('-W', $_POST['to']);
+   
+    
+   
 
-<th class="planning_head_day week"><a href="">2</a></th>
-<th class="planning_head_day week"><a href="">3</a></th>
-<th class="planning_head_day week"><a href="">4</a></th>
-<th class="planning_head_day week today"><a href="">5</a></th>
-<th class="planning_head_day week"><a href="">6</a></th>
-<th class="planning_head_day weekend"><a href="">7</a></th>
-<th class="planning_head_day weekend"><a href="">8</a></th>
-<th class="planning_head_day week"><a href="">9</a></th>
-<th class="planning_head_day week"><a href="">10</a></th>
-<th class="planning_head_day week"><a href="">11</a></th>
-<th class="planning_head_day week"><a href="">12</a></th>
-<th class="planning_head_day week"><a href="">13</a></th>
-<th class="planning_head_day weekend"><a href="">14</a></th>
-<th class="planning_head_day weekend"><a href="">15</a></th>
-<th class="planning_head_day week"><a href="">16</a></th>
-<th class="planning_head_day week"><a href="">17</a></th>
-<th class="planning_head_day week"><a href="">18</a></th>
-<th class="planning_head_day week"><a href="">19</a></th>
-<th class="planning_head_day week"><a href="">20</a></th>
-<th class="planning_head_day weekend"><a href="">21</a></th>
-<th class="planning_head_day weekend"><a href="">22</a></th>
-<th class="planning_head_day week"><a href="">23</a></th>
-<th class="planning_head_day week"><a href="">24</a></th>
-<th class="planning_head_day week"><a href="">25</a></th>
-<th class="planning_head_day week"><a href="">26</a></th>
-<th class="planning_head_day week"><a href="">27</a></th>
-<th class="planning_head_day weekend"><a href="">28</a></th>
-<th class="planning_head_day weekend"><a href="">29</a></th>
+  $from=weektotime($w1,$y1)-60*60 ;
+  $to=weektotime($w2,$y2)+6*24*60*60 ;
+   # code...
+  $sql .= " $from and $to";
 
-</tr>
-<tr>
-	<th style="padding: 0 20px 0 20px;" rowspan="2"><a href=''>Nord</a></th>
-	<th style="padding: 0 20px 0 20px;"><a href="">Fes</a></th>
-	<th style="padding: 0 20px 0 20px;"><a href="">Karama</a></th>
-<th id="tdUser_1" style="padding: 0 20px 0 20px;" >&nbsp;<a  href="javascript:xajax_modifProjet('test');undefined;">khalid el otmani</a>&nbsp;</th>
-<td  style="min-width:25px;" id="td_test_20180702" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180703" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180704" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180705" class="week today">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180706" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180707" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180708" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180709" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180710" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180711" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180712" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180713" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180714" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180715" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180716" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180717" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180718" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180719" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180720" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180721" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180722" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180723" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180724" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180725" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180726" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180727" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180728" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180729" class="weekend">&nbsp;</td>
-</tr>
-<tr>
-	
-	<th>Meknes</th>
-	<th>Valancia</th>
-<th id="tdUser_1" >&nbsp;<a  href="javascript:xajax_modifProjet('test');undefined;">Said Ayadi</a>&nbsp;</th>
-<td  style="min-width:25px;" id="td_test_20180702" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180703" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180704" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180705" class="week today">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180706" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180707" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180708" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180709" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180710" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180711" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180712" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180713" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180714" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180715" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180716" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180717" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180718" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180719" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180720" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180721" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180722" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180723" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180724" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180725" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180726" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180727" class="week">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180728" class="weekend">&nbsp;</td>
-<td  style="min-width:25px;" id="td_test_20180729" class="weekend">&nbsp;</td>
-</tr>
-</table>
+ if ( @$_POST['tech']!='All')  {
+     
+  $sql.=" and NomTech='".$_POST['tech']."'";
 
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+     
+ }
+
+ if ( $_POST['site']!='All' ) {
+            
+              $sql.=" and site=".$_POST['site'];       
+          
+         }
+
+   }else{
+
+
+
+  $from=weektotime(date('W',time()-(7*24*60*60)),date('Y',time()-(7*24*60*60)))-60*60 ;
+  $to=weektotime(date('W',(time()+(20*24*60*60))),date('Y',(time()+(20*24*60*60))))-60*60-1 ;
+
+
+
+    
+ $sql .= " $from and $to ";
+
+ if ( isset($_POST['tech']) and @$_POST['tech']!='All')  {
+     
+  @$sql.=" and NomTech='".$_POST['tech']."'";
+
+     
+ }
+ if ( isset($_POST['tech']) and  @$_POST['site']!='All' ) {
+            
+              @$sql.=" and site=".$_POST['site'];       
+          
+         }
+        
+    
+   }
+ 
+
+
+  $time_range=range($from,$to,86400);
+ 
+// echo $sql;
+   
+  try {
+          
+          $pdostmt=$pdo->query($sql) or die();
+         
+          $rows=$pdostmt->rowCount();
+  //         echo $rows;
+
+          $result=$pdostmt->fetchAll(PDO::FETCH_ASSOC);
+
+       //  var_dump($result);
+          $sites=getSites($pdo);
+          // $destech=array_unique($tech);
+
+        $tec=tech_site($result);
+      //  var_dump($sites);
+      
+       
+        $techi = array_map("unserialize", array_unique(array_map("serialize", $tec)));
+        
+       // var_dump($techi);
+            }
+          catch(Exception $e){
+            $rows=0;
+          }
+
+
+ 
+
+$tech=orga($techi,$result);
+//var_dump($tech);
+
+
+
+
+?>
+
+
+ 
+
+<div class="col-md-12">
+   <div class="row">
+    <form action="home.php?page=plan" method="post">
+      
+  
+        <div class="form-inline">
+            <div class="form-group">
+      <label for="from">From:</label>
+      <input type="week" class="form-control"  name="from" id="from" >
+    </div>  
+
+    <div class="form-group">
+      <label for="to">To:</label>
+      <input type="week" class="form-control" name="to" id="to" >
+    </div> 
+
+    <div class="form-group">
+      <label for="to">Tech:</label>
+      <select class="form-control" id="tech"  name="tech" >
+        <option value="All">All</option>
+       <?=   optionTech() ?>
+
+      </select>
+    </div>
+
+     <div class="form-group">
+      <label for="to">Site:</label>
+  <select id="site"  name="site" class="form-control">
+    <option value="All">All</option>
+                    <?= optionSites($sites) ?>
+                   </select> 
+    </div>
+
+<div class="form-group">
+  
+      <button type="submit" class="btn btn-info" style="margin-bottom: 2px;
+    height: 32px;">Search For Me</button>
+
+</div>
+        </div>
+      </form>
+     </div>
+   
+</div>
+    <div class="col-md-12">
+      <div class="soplanning-box" id="divPlanning">
+                
+        <table id="tablePlanning">
+          <tr>
+            <td class="switchCell">
+              <div id="divBoutonInverser" class="text-center">
+              </div>
+            </td>
+            <td>
+              <div id="divLigneEntete" style="display:none">
+                <table id="layerJours" class="planningContent scroll">
+                  <tbody id="bodyLayerJours">
+
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              <div id="divColonneEntente" >
+                <div class="h17"></div>
+                <table id="divPeople">
+                  <tbody id="bodyPeople">
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          
+         <?php
+
+
+
+  if ( $rows >0 ) {
+    # code...
+  
+
+
+          echo '   <td>
+                              <div id="divScrollHaut" class="scroll">
+                  <div id="divScrollHautInterne"></div>
+                </div>
+                       <div id="divConteneurPlanning" class="scroll" style="overflow-y:hidden">
+                <table class="planningContent" id="tabContenuPlanning"><tr> '; 
+
+  
+
+     weekCreator($from,$to);
+
+
+echo '</tr><tr>';
+//<!-- day's name -- 
+
+    
+    
+   dasnameCreator($time_range);
+  
+echo '</tr><tr>';
+ 
+  dayCreator($time_range);
+echo '</tr><tr>';
+ 
+   theCreator($tech,$sites,$time_range);
+
+  
+
+
+
+  
+
+echo '</tr></table>';}else{
+
+
+echo '
+<div  class="col-sm-6"  style="margin-top:50px;">
+  <div class="col-sm-offset-2">
+<div  class="alert alert-warning" style="margin-left: 13px ; ">
+  <strong>No data!</strong> Try another filter !!!
+</div>
+ </div>
+ </div> ';
+
+}
+
+
+    ?>
+
+
+
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  
+$(function(){
+
+
+
+
+  a=$('tbody tr td div table#tabContenuPlanning tbody tr td.sh');
+  $.each(a,function(key,value){
+    switch ($(value).text() ){
+        case 'AM1': $(value).css('background-color','#ffff99').css('text-align','center');break;
+        case 'PM1': $(value).css('background-color','rgb(232, 168, 124)').css('text-align','center');break;
+
+        case 'AM2': $(value).css('background-color','#ffff4d').css('text-align','center');break;
+        case 'PM2': $(value).css('background-color','rgb(234, 187, 79)').css('text-align','center');break;
+        case 'AM3': $(value).css('background-color','#ffff00').css('text-align','center');break;
+        case 'PM3': $(value).css('background-color','rgb(195, 106, 63)').css('text-align','center');break;
+        case 'AM4': $(value).css('background-color','#ffc61a').css('text-align','center');break;
+        case 'PM4': $(value).css('background-color','#ff8533').css('text-align','center');break;
+        
+        case 'NRM': $(value).css('background-color','#66ff33').css('text-align','center');break;
+        case 'NGHT1': $(value).css('background-color','rgb(224, 199, 224)').css('text-align','center');break;
+        case 'NGHT2': $(value).css('background-color','#d698d5').css('text-align','center');break;
+        case 'NGHT3': $(value).css('background-color','rgb(154, 107, 216)').css('text-align','center');break;
+        
+    }
+
+  });
+
+
+});
+
+
+</script>
+
+
+
+
+ 

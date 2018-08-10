@@ -1,6 +1,6 @@
 <?php 
 
-
+@session_start();
 
 
  
@@ -150,7 +150,7 @@ $d   = DateTime::createFromFormat('!m', $i);
 $m = $d->format('F').' '.$i;
 
  $month.='   
-<th class="planning_head_month" colspan="28"><a href="">'.$m.'</a></th>
+<th class="planning_head_month" colspan="28">'.$m.'</th>
   ';
 }
 echo $month;
@@ -161,7 +161,7 @@ function weekCreator($from,$to){
   $week='<th rowspan="3"  colspan="4" ></th> ';
 
  foreach (weekto_($from,$to) as $k) {
-    $week.='<th class="planning_head_week"  colspan="7"><a href="">W '.$k.'</a></th>';
+    $week.='<th class="planning_head_week"  colspan="7">W '.$k.'</th>';
  }
    echo $week;
   }
@@ -174,10 +174,10 @@ function dasnameCreator($time_range){
       $dn=date('l',$val);
 
     if ($dn[0]=='S') {
-        $dasname .= '<th class="planning_head_dayname weekend"><div><a href="">'.$dn[0].'</a></div></th>';
+        $dasname .= '<th class="planning_head_dayname weekend"><div>'.$dn[0].'</div></th>';
 
     }else{
-  $dasname.='<th class="planning_head_dayname week"><div><a href="">'.$dn[0].'</a></div></th>';
+  $dasname.='<th class="planning_head_dayname week"><div>'.$dn[0].'</div></th>';
     }
       
     }
@@ -198,10 +198,10 @@ $day='';
       $dnm=date('l',$val);
 
     if ($dnm[0]=='S') {
-     $day .= '<th class="planning_head_day weekend"><div><a href="">'.$dn.'</a></div></th>';
+     $day .= '<th class="planning_head_day weekend"><div>'.$dn.'</div></th>';
 
     }else{
-   $day .= '<th class="planning_head_day week"><div><a href="">'.$dn.'</a></div></th>';
+   $day .= '<th class="planning_head_day week"><div>'.$dn.'</div></th>';
       }
     }
     
@@ -216,14 +216,50 @@ $day='';
               foreach ($sites as  $site) {
                 if ($site['idsite']==$value[2]) {
              
- echo '<tr class=""> <th style="padding: 0 20px 0 20px;"><a href="" >'.$site['region'].'</a></th>
-  <th style="padding: 0 20px 0 20px;"><a href="">'.$site['ville'].'</a></th><th style="padding: 0 20px 0 20px;"><a href="">'.$site['name'].'</a></th>';
+ echo '<tr class="th"> <th >'.$site['region'].'</th>
+  <th >'.$site['ville'].'</th><th >'.$site['name'].'</th>';
                 }
                 
               }
  }
 
-   function shiftCreator($value,$time_range){
+   function shiftCreatorRoot($value,$time_range){
+
+            foreach  ($time_range as $key => $val){
+              $i=0 ;
+              $tmp=array();
+                  foreach ($value[3] as  $valu) {
+                 
+                       if ($val==$valu['1']) {
+                               $i++;
+                            $tmp=$valu;
+                      }
+
+            }          
+                
+              $dnm=date('l',$val);
+         
+               if ($i==1) {             
+                       echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend sh"><a href="home.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>';      
+    }
+
+                       
+                else
+                     {
+                      if ($dnm[0]!='S') 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="week">&nbsp;</td>'; 
+                  else
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend">&nbsp;</td>'; 
+                     }
+                       
+      }
+
+
+   }
+
+
+
+   function shiftCreatorAdmin($value,$time_range){
 
             foreach  ($time_range as $key => $val){
               $i=0 ;
@@ -243,7 +279,41 @@ $day='';
                 if ((time() - $tmp[1] )> 36*60*60) 
                      echo ' <td  style="min-width:25px;" id="'.$val.'" class="sh week">'.$tmp['0'].'</td>'; 
                   else
-                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend sh"><a href="index.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>';      
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend sh"><a href="home.php?page=modify&idp='.$tmp[2].'">'.$tmp['0'].'</a></td>';      
+    }
+
+                       
+                else
+                     {
+                      if ($dnm[0]!='S') 
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="week">&nbsp;</td>'; 
+                  else
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="weekend">&nbsp;</td>'; 
+                     }
+                       
+      }
+
+
+   }
+   function shiftCreatorGuest($value,$time_range){
+
+            foreach  ($time_range as $key => $val){
+              $i=0 ;
+              $tmp=array();
+                  foreach ($value[3] as  $valu) {
+                 
+                       if ($val==$valu['1']) {
+                               $i++;
+                            $tmp=$valu;
+                      }
+
+            }          
+                
+              $dnm=date('l',$val);
+         
+               if ($i==1) {
+               
+                     echo ' <td  style="min-width:25px;" id="'.$val.'" class="week sh">'.$tmp['0'].'</td>';      
     }
 
                        
@@ -270,9 +340,28 @@ $day='';
 
    siteCreator($sites,$value); 
 
-  echo '<th id="tdUser_1" style="padding: 0 20px 0 20px;" >&nbsp;<a  href="">'.$value[1].'</a>&nbsp;</th>';
-           
-   shiftCreator($value,$time_range);
+  echo '<th id="tdUser_1" style="border-right: 1px solid black">&nbsp; '.$value[1].' &nbsp;</th>';
+      
+  switch (@$_SESSION['role']) {
+    case 'root':
+   shiftCreatorRoot($value,$time_range);
+      break;
+
+      case 'admin':
+   shiftCreatorAdmin($value,$time_range);
+      break;
+
+      case 'guest':
+   shiftCreatorGuest($value,$time_range);
+      break;
+    
+    default:
+         shiftCreatorGuest($value,$time_range);
+
+      break;
+  }
+
+   #shiftCreator($value,$time_range);
 
          }
    }
@@ -344,3 +433,36 @@ function totalHours(array $shifts){
       return $result;
 
 }
+function ldapConnect (){
+
+   $ldapcon=@ldap_connect('localhost'); 
+   ldap_set_option($ldapcon,LDAP_OPT_PROTOCOL_VERSION, 3);
+   ldap_set_option($ldapcon,LDAP_OPT_REFERRALS, 0);
+   return $ldapcon;
+
+  }
+
+
+function getTech(){
+    $ldapcon=ldapConnect();
+    $dn = "OU=people,DC=tt016,DC=lan";
+    $filter="(objectClass=*)";
+    $justthese = array("cn");
+
+    $sr=ldap_search($ldapcon, $dn, $filter, $justthese);
+
+    return ldap_get_entries($ldapcon, $sr);
+}
+
+function optionTech(){
+    $tech='';
+  foreach (getTech() as $key => $value) {
+      if(isset($value['cn']))
+
+     {   $tech.="<option value='".$value['cn'][0]."'>".$value['cn'][0]."</option>"; }
+     
+  }
+  
+  return $tech;
+}
+

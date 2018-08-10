@@ -67,7 +67,7 @@ ini_set("display_errors", 1);
     
    }
  
-echo "string";
+
 
   $time_range=range($from,$to,86400);
  

@@ -1,3 +1,13 @@
+
+<?php 
+
+   if ($_SESSION['role']=='guest') {
+   	 header("location:home.php?page=plan");
+   }
+
+ ?>
+
+
 <div class="col-sm-9">
 	<div class="col-sm-offset-3">
 		<table id="show_site" class="table table-bordered" style="background-color: white;">
@@ -10,6 +20,7 @@
 <tbody >
 	<?php 
         require_once 'model/connect.php';
+        require_once 'model/connect_ldap.php';
        try {
 
         $pdostmt=$pdo->query('select * from sites');
@@ -55,10 +66,7 @@
            <label>Tech:</label>
                    <select id="tech" class="form-control">
                    	 <option>-----</option>
-                   	 <option>Said </option>
-                   	 <option>Hamid</option>
-                   	 <option>Nacir</option>
-                   	 <option>Rafik</option>
+                   	 <?= optionTech() ?>
                    </select>
                 </div>
              </div>

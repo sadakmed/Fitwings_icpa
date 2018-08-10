@@ -1,5 +1,6 @@
 <?php 
 
+
 	error_reporting(E_ALL);
 ini_set("display_errors", 1);
   require_once 'model/connect.php';
@@ -7,13 +8,13 @@ ini_set("display_errors", 1);
 
     $pdostmt=$pdo->query('select * from wplan where idp='.$_GET['idp']);
     $result=$pdostmt->fetch(PDO::FETCH_ASSOC);  
+    
 
 
-
-    if ( (time() - $result['date'] )> 36*60*60 ) {
+    if ( ((time() - $result['date'] )> 36*60*60 && $_SESSION['role']!='root') || $_SESSION['role']=='guest' ) {
     	
 
-    	header("location:test.php");
+    	header("location:home.php?page=plan");
     }
 
    
@@ -93,10 +94,7 @@ ini_set("display_errors", 1);
            <label>Tech:</label>
            <select id="tech" class="form-control">
                    	 <option>-----</option>
-                   	 <option  value="Said " >Said </option>
-                   	 <option  value="Hamid" >Hamid</option>
-                   	 <option value="Nacir" >Nacir</option>
-                   	 <option value="Rafik" >Rafik</option>
+                    <?= optionTech() ?>
                    </select>                </div>
             </div><div class="col-sm-3">
         		<div class="form-group"> 
@@ -110,10 +108,18 @@ ini_set("display_errors", 1);
         		<div class="form-group"> 
            <label>Shift:</label>
 <select id="shift" class="form-control">
-                   	 <option>AM</option>
-                   	 <option>PM </option>
-                   	 <option>NGHT</option>
-                   	 <option>NRM</option>
+                     <option value="AM1" >AM1</option>
+                     <option value="AM2" >AM2</option>
+                     <option value="AM3" >AM3</option>
+                     <option value="PM1" >PM1</option>
+                     <option value="PM2" >PM2</option>
+                     <option value="PM3" >PM3</option>
+                     <option value="NGHT1" >NGHT1</option>
+                     <option value="NGHT2" >NGHT2</option>
+                     <option value="NGHT3" >NGHT3</option>
+                     <option value="NRM" >NRM</option>
+                     <option value="AM4" >AM4</option>
+                     <option value="PM4" >PM4</option>
                    </select>                </div> </div>
 
               
@@ -122,11 +128,13 @@ ini_set("display_errors", 1);
                 <div class="form-group"> 
            <label>Reason:</label>
                    <select id="reason" class="form-control">
-                   	 <option>Change</option>
+                     <option>Change</option>
+                   	 <option>Travel</option>
                    	 <option>Sick</option>
                    	 <option>Legal</option>
                    	 <option>Death</option>
-                   	 <option>Birth</option>
+                     <option>Birth</option>
+                   	 <option>DownTime</option>
                    </select>
                 </div>
              </div>
@@ -227,7 +235,7 @@ ini_set("display_errors", 1);
 function red(){
     
 
-	window.location.assign('test.php');
+	window.location.assign('home.php?page=plan');
 }
 
 

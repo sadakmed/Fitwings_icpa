@@ -1,3 +1,16 @@
+<?php 
+  
+  session_start();
+
+
+
+  if (!isset($_SESSION['user'])) {
+
+   header("location:index.php");
+
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +70,13 @@
  
   <style>
 
+tr.th th {
 
+  background-color: white;
+  padding: 0 20px 0 0;
+  border:1px solid  #e4e8ec;
+  
+}
  
 </style>
 
@@ -74,19 +93,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" style="padding: 15px 0 15px 15px ;" href="index.php"><img src="img/Sicpa1.png" style="margin-top: -25px ; margin-left:-16px ; width: 73px;"></a>
+      <a class="navbar-brand" style="padding: 15px 0 15px 15px ;" href="home.php?page=plan"><img src="img/Sicpa1.png" style="margin-top: -25px ; margin-left:-16px ; width: 73px;"></a>
     </div>
     <div class="collapse navbar-collapse" style="font-size: 1.21em; font-weight: bold; margin-top: 2px;" id="myNavbar">
       <ul class="nav navbar-nav">
         
-        <li><a href="test.php">Planning</a></li>
-        <li><a href="index.php?page=plan_for_user">Plan The Shift</a></li>
-        <li><a href="index.php?page=count">Count shifts</a></li>
+        <li><a href="home.php?page=plan">Planning</a></li>
+        
+ <?php 
+    
+  if ( @$_SESSION['role']=='admin' || @$_SESSION['role']=='root' ) 
+      echo '<li><a href="home.php?page=plan_for_user">Plan The Shift</a></li>';
+
+?>
+
+
+        <li><a href="home.php?page=hist">Modific. history</a></li>
+        <li><a href="home.php?page=count">Count shifts</a></li>
 
      </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php"><span style="padding-right: 6px;"  class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <li><a href="logout.php"><span style="padding-right: 6px;"  class="glyphicon glyphicon-log-out"></span>LogOut</a></li>
       </ul>
     </div>
   </div>
